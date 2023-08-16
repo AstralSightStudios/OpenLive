@@ -9,5 +9,5 @@
 </template>
 
 <style scoped>
-  @import './css/topnav.css'
+  @import './css/mainpage.css'
 </style>
