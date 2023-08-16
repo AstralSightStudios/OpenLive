@@ -6,3 +6,5 @@ import '@material/web/common'
 const mainpage = createApp(MainPage)
 
 mainpage.mount('#app')
+
+document.body.setAttribute("class","background")
