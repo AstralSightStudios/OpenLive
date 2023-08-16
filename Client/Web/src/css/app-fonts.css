@@ -1,0 +1,22 @@
+@font-face {
+    font-family: "Poppins";
+    font-size: medium;
+    src: url("../font/Poppins-Medium.ttf"); 
+}  
+
+@font-face {
+    font-family: "Noto Sans";
+    font-size: medium;
+    src: url("../font/NotoSans-Medium.ttf"); 
+}
+
+@font-face {
+    font-family: "Roboto";
+    src: url("../font/Roboto-Regular.ttf"); 
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-size: medium;
+    src: url("../font/Roboto-Medium.ttf"); 
+}

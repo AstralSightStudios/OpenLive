@@ -9,5 +9,6 @@
 </template>
 
 <style scoped>
+  @import './css/app-fonts.css';
   @import './css/mainpage.css'
 </style>
