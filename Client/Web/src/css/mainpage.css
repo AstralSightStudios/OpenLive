@@ -1,8 +1,61 @@
-.app{
+.app {
     font-family: "Noto Sans";
 }
 
-div{
+.userinfo {
+    float: right;
+    top: 50px;
+    right: 50px;
+    position: absolute
+}
+
+.userinfo_username {
+    color: white;
+    position: absolute;
+    right: 70px;
+    text-align: right;
+    width: 1000px;
+}
+
+.userinfo_gold_img {
+    color: white;
+    position: absolute;
+    right: 170px;
+    top: 27px;
+    width: 10px;
+    height: 10px;
+}
+
+.userinfo_gold_num {
+    color: white;
+    position: absolute;
+    right: 120px;
+    top: 22px;
+    font-size: 12px;
+    text-align: left;
+    float: left;
+    width: 40px
+}
+
+.userinfo_exp_img {
+    color: white;
+    position: absolute;
+    right: 100px;
+    top: 21px;
+    width: 22px;
+    height: 22px;
+}
+
+.userinfo_exp_num {
+    color: white;
+    position: absolute;
+    right: 40px;
+    top: 22px;
+    font-size: 12px;
+    width: 50px
+}
+
+div {
     font-family: "Poppins";
 }
 

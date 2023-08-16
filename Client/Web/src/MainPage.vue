@@ -2,9 +2,12 @@
   <html></html>
   <body>
     <div class="app">
-      <div id="header" style="float: right; top: 50px; right: 50px; position: absolute">
-        <div style="color: white ;position: absolute; right: 70px; text-align: right;width: 1000px;">HEREUserName</div>
-        <img src="./icon/icon_gold.png" style="color: white ;position: absolute; right: 180px; top: 27px; width: 10px;height: 10px;">
+      <div class="userinfo">
+        <div class="userinfo_username">OpenLiveUser</div>
+        <img src="./icon/icon_gold.png" class="userinfo_gold_img">
+        <div class="userinfo_gold_num">13.14</div>
+        <img src="./icon/icon_exp.png" class="userinfo_exp_img">
+        <div class="userinfo_exp_num">114514</div>
         <img src="./img/default_profile_img.png" id="avatar">
       </div>
     </div>
