@@ -1,13 +1,21 @@
 @font-face {
-    font-family: "Poppins";
-    font-size: medium;
+    font-family: "Poppins Med";
     src: url("../font/Poppins-Medium.ttf"); 
 }  
 
 @font-face {
-    font-family: "Noto Sans";
-    font-size: medium;
+    font-family: "Noto Sans Med";
     src: url("../font/NotoSans-Medium.ttf"); 
+}
+
+@font-face {
+    font-family: "Noto Sans SC";
+    src: url("../font/NotoSansSC-Regular.otf"); 
+}
+
+@font-face {
+    font-family: "Noto Sans SC Med";
+    src: url("../font/NotoSansSC-Medium.otf"); 
 }
 
 @font-face {
@@ -16,7 +24,6 @@
 }
 
 @font-face {
-    font-family: "Roboto";
-    font-size: medium;
+    font-family: "Roboto Med";
     src: url("../font/Roboto-Medium.ttf"); 
 }

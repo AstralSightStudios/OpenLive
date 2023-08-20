@@ -20,7 +20,12 @@ mainpage.mount('#app')
 
 document.body.setAttribute("class", "background")
 
-axios.default.get(app_config["server_addr"] + "/app_info")
+window.onload = function(){
+    function wip_alert(){
+        alert("该功能暂未开放，请耐心等待")
+    }
+
+    axios.default.get(app_config["server_addr"] + "/app_info")
     .then(res => {
         document.title = res.data.browser_title
     })
@@ -28,7 +33,7 @@ axios.default.get(app_config["server_addr"] + "/app_info")
         console.log(err);
     });
 
-axios.default.get(app_config["server_addr"] + "/live_info")
+    axios.default.get(app_config["server_addr"] + "/live_info")
     .then(res => {
         console.log(res.data.livestream_addr)
         var player = videojs('live_player_vjs', {
@@ -49,8 +54,21 @@ axios.default.get(app_config["server_addr"] + "/live_info")
             controls: true
         });
         player.load()
+
+        var live_title_object = document.getElementById("live_title")
+        var anchor_profile_img_object = document.getElementById("anchor_img")
+        var anchor_name_object = document.getElementById("anchor_name")
+
+        //我们傻逼TypeScript是这样的捏
+        //@ts-ignore
+        live_title_object.innerHTML = res.data.live_title
+        //@ts-ignore
+        anchor_profile_img_object.setAttribute("src",res.data.anchor_profile_img_url)
+        //@ts-ignore
+        anchor_name_object.innerHTML = res.data.anchor_name
         //player.src(res.data.livestream_addr)
     })
     .catch(err => {
         console.log(err);
     });
+}

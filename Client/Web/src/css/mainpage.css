@@ -1,5 +1,5 @@
 .app {
-    font-family: "Noto Sans";
+    font-family: "Noto Sans Med";
 }
 
 .userinfo {
@@ -76,6 +76,17 @@
     border-radius: 10px;
 }
 
+.container_live_title {
+    display: flex;
+    /* 设置容器为弹性盒 */ 
+    flex-wrap: wrap; 
+    /* 允许弹性盒换行 */
+    top: 90px;
+    left: 3%;
+    width: 90%;
+    position: relative;
+}
+
 .container {
     display: flex;
     /* 设置容器为弹性盒 */ 
@@ -83,6 +94,17 @@
     /* 允许弹性盒换行 */
     
     top: 120px;
+    position: relative;
+}
+
+.container_anchor_info {
+    display: flex;
+    /* 设置容器为弹性盒 */ 
+    flex-wrap: wrap; 
+    /* 允许弹性盒换行 */
+    top: 160px;
+    left: 3%;
+    width: 90%;
     position: relative;
 }
 
@@ -109,10 +131,10 @@
 }
 
 div {
-    font-family: "Poppins";
+    font-family: "Poppins Med";
 }
 
-#avatar {
+.avatar {
     width: 40px;
     height: 40px;
     border-radius: 50%;
