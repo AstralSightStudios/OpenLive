@@ -59,14 +59,53 @@
 
 .userinfo:hover::after {
     content: "";
-    background-color: white; /* 遮罩的背景颜色 */
-    opacity: 0.5; /* 遮罩的透明度 */
-    width: 110%; /* 遮罩的宽度 */
-    height: 150%; /* 遮罩的高度 */
-    position: absolute; /* 遮罩的定位方式 */
-    top: -15px; /* 遮罩的上边距 */
-    left: 0px; /* 遮罩的左边距 */
+    background-color: white;
+    /* 遮罩的背景颜色 */
+    opacity: 0.5;
+    /* 遮罩的透明度 */
+    width: 110%;
+    /* 遮罩的宽度 */
+    height: 150%;
+    /* 遮罩的高度 */
+    position: absolute;
+    /* 遮罩的定位方式 */
+    top: -15px;
+    /* 遮罩的上边距 */
+    left: 0px;
+    /* 遮罩的左边距 */
     border-radius: 10px;
+}
+
+.container {
+    display: flex;
+    /* 设置容器为弹性盒 */ 
+    flex-wrap: wrap; 
+    /* 允许弹性盒换行 */
+    
+    top: 120px;
+    position: relative;
+}
+
+#live_player {
+    position: relative;
+    left: 3%;
+    flex: 1 1 70%;
+    max-width: 70%; 
+    height: 540px;
+    border-radius: 15px;
+}
+
+#chat_area {
+    position: relative;
+    left: 7%;
+    flex: 1 1 20%;
+    max-width: 20%; 
+    height: 540px; 
+    border-radius: 15px; /* 设置圆角 */
+}
+
+@media (max-width: 768px) {
+    /* 使用媒体查询来定义小屏幕下的样式 / #live_player, #chat_area { flex-basis: 100%; / 设置基准宽度为100% / max-width: 100%; / 设置最大宽度为100% */
 }
 
 div {
