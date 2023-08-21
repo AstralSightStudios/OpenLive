@@ -21,7 +21,16 @@
           </video>
         </div>
         <div id="live_chat_clip"></div>
-        <div id="chat_area" class="surface-variant"></div>
+        <div id="chat_area" class="surface-variant">
+          <md-filled-text-field label="接下来该说些什么呢..." labelStyle="{fontSize: '4px'}"
+            style=" --md-filled-text-field-container-color: #4f585e ;top: 460px;position: absolute; height: 50px; --md-sys-typescale-body-large: 400 12px system-ui; left: 5%; width: 62%"></md-filled-text-field>
+          <md-filled-tonal-button style="top: 465px;position: absolute; left: 70%;">
+            发送
+            <svg slot="icon" viewBox="0 0 48 48">
+              <path d="M6 40V8l38 16Zm3-4.65L36.2 24 9 12.5v8.4L21.1 24 9 27Zm0 0V12.5 27Z" />
+            </svg>
+          </md-filled-tonal-button>
+        </div>
       </div>
       <div class="container_anchor_info">
         <img class="avatar" id="anchor_img" style="width: 55px; height: 55px;top: 2px;position: absolute">
@@ -29,15 +38,17 @@
           style="color:white; position: absolute; left: 70px; font-family: Noto Sans SC Med;font-size: 18px">Loading...
         </div>
         <md-filled-button style="color:white; position: absolute; left: 70px; top: 30px;height: 30px"
-          >主页</md-filled-button>
+          @click="wip_alert">主页</md-filled-button>
         <md-filled-button style="color:white; position: absolute; left: 150px; top: 30px;height: 30px;"
-          >...</md-filled-button>
+          @click="wip_alert">...</md-filled-button>
       </div>
     </div>
   </body>
 </template>
 
-<style scoped>
-@import './css/app-fonts.css';
-@import './css/mainpage.css'
-</style>
+<script setup>
+import { wip_alert } from '@/page_onclick_process'
+</script>
+
+<style scoped>@import './css/app-fonts.css';
+@import './css/mainpage.css'</style>

@@ -88,6 +88,9 @@
   text-transform: var(--md-sys-typescale-body-small-text-transform);
   text-decoration: var(--md-sys-typescale-body-small-text-decoration);
 }
+.body-custom1{
+  font-size: 1px;
+}
 .label-large{
   font-family: var(--md-sys-typescale-label-large-font-family-name);
   font-style: var(--md-sys-typescale-label-large-font-family-style);
