@@ -1,6 +1,8 @@
 import express from 'express'
 import * as openlive_config_js from "./openlive-config.js"
 
+global.test_global = 1
+
 export function runOpenLiveServer() {
     const openlive_server = express()
     const config = openlive_config_js.GetConfig()
@@ -31,6 +33,7 @@ export function runOpenLiveServer() {
                 "login_required": false,  //是否必须要登录才能看直播
                 "livestream_type": "http-flv", //直播流类型 hls http-flv webrtc
                 "livestream_addr": "http://127.0.0.1:8000/livemystream12345/mystream.flv", //直播流地址
+                "websocket_addr": "ws://127.0.0.1:8010/ws_connect",
                 "enable_chat": true, //是否允许聊天
                 "manager_list": [] //房管列表
             })
