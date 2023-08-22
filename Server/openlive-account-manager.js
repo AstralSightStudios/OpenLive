@@ -111,6 +111,18 @@ export function GetAccountObjectByDisplayname(displayname) {
     return null
 }
 
+export function GetSTRINGAccountObjectByAllowedToken(token) {
+    var target_uid = global.ALLOW_TOKENS[token]
+    if(target_uid != undefined){
+        for (let account of global.accounts_database.ACCOUNTS) {
+            if (account.UID === uid) {
+                return JSON.stringify(account)
+            }
+        }
+    }
+    return "bad token"
+}
+
 export function sync_account_db_file(){
     fs.writeFileSync("account_database.json",JSON.stringify(global.accounts_database))
 }
