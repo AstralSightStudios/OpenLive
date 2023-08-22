@@ -1,2 +1,5 @@
 node_modules
 config.json
+currentuid
+accounts.json
+chat_area_div_content.html

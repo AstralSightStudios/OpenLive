@@ -1,5 +1,5 @@
 import * as fs from 'fs'
-import * as AccountManager from './openlive-account-manager'
+import * as AccountManager from './openlive-account-manager.js'
 
 export function anti_xss_replace(message){
     message = message.replace(/</gi, "&lt;").replace(/>/gi, "&gt;").replace(/&/gi, "&amp;").replace(/"/gi, "&quot;").replace(/'/gi, "&#x27;").replace(/\//gi, "&#x2F;")

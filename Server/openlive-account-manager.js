@@ -1,7 +1,16 @@
 import * as fs from 'fs'
-import * as utils from './openlive-utils'
+import * as utils from './openlive-utils.js'
+import * as chat_manager from './openlive-chat-manager.js'
 
 global.ALLOW_TOKENS = {}
+
+export function isValidString(str) {
+    // 定义一个正则表达式，匹配大小写字母、数字以及所有的英文符号
+    const regex = /^[A-Za-z0-9!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]*$/;
+    // 用正则表达式的test方法来检查字符串是否合法
+    return regex.test(str);
+}
+  
 
 export const default_account_database = {
     "PANEL_ACCOUNTS": [
@@ -51,21 +60,29 @@ export function Login(username, password){
 }
 
 export function Register(username, password, display_name){
-    var ac_obj = GetAccountObjectByUsername(username)
-    if(ac_obj === null){
-        global.accounts_database.ACCOUNTS.push({
-            "UID": fs.readFileSync("currentuid"),
-            "USERNAME": username,
-            "PASSWORD": password,
-            "DISPLAY_NAME": display_name,
-            "LEVEL": 0, //TODO: 等级系统
-            "TAGS": []
-        })
-        fs.writeFileSync("currentuid",(Number(fs.readFileSync("currentuid")) + 1).toString())
-        sync_account_db_file()
+    if(isValidString(username) && isValidString(display_name)){
+        var ac_obj = GetAccountObjectByUsername(username)
+        if(ac_obj === null){
+            global.accounts_database.ACCOUNTS.push({
+                "UID": fs.readFileSync("currentuid"),
+                "USERNAME": chat_manager.anti_xss_replace(username),
+                "PASSWORD": password,
+                "DISPLAY_NAME": chat_manager.anti_xss_replace(display_name),
+                "LEVEL": 0, //TODO: 等级系统
+                "TAGS": []
+            })
+            fs.writeFileSync("currentuid",(Number(fs.readFileSync("currentuid")) + 1).toString())
+            sync_account_db_file()
+            return JSON.stringify({
+                "status": true,
+                "msg": "注册成功，请前往登录"
+            })
+        }
+    }
+    else{
         return JSON.stringify({
-            "status": true,
-            "msg": "注册成功，请前往登录"
+            "status": false,
+            "msg": "账号或密码或显示名中存在非法字符，其只能由英文字母和英文符号组成"
         })
     }
     return JSON.stringify({
@@ -129,7 +146,7 @@ export function sync_account_db_file(){
 
 export function init_account_system() {
     if (!fs.existsSync("currentuid")){
-        fs.writeFileSync("currentuid",0)
+        fs.writeFileSync("currentuid","0")
     }
     if (fs.existsSync("account_database.json")) {
         console.log("Account System: OK")
