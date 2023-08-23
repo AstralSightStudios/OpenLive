@@ -1,16 +1,64 @@
 <template>
   <body>
     <div class="app">
-      <md-dialog id="dialog_login" aria-label="A simple dialog" style="--md-dialog-container-color: var(--md-sys-color-on-tertiary); width: 25%">
+      <md-dialog id="universal_error_dialog" style="--md-dialog-container-color: var(--md-sys-color-on-error-container); width: 25%">
+        <div slot="headline" id="universal_error_dialog_title" style="font-family: Noto Sans SC Med; color: black">出现错误</div>
+        <form id="form" slot="content" method="dialog">
+          <div style="font-family: Noto Sans SC Med; color: black" id="universal_error_dialog_text">未指定</div>
+        </form>
+        <div slot="actions">
+          <md-text-button form="form" value="close" style="font-family: Noto Sans SC Med; --md-text-button-label-text-color: black; --md-text-button-hover-label-text-color: gray; --md-text-button-pressed-label-text-color: gray; --md-text-button-disabled-label-text-color: gray">确定</md-text-button>
+        </div>
+      </md-dialog>
+
+      <md-dialog id="universal_info_dialog" style="--md-dialog-container-color: var(--md-sys-color-on-tertiary); width: 25%">
+        <div slot="headline" id="universal_info_dialog_title" style="font-family: Noto Sans SC Med;">通知</div>
+        <form id="form" slot="content" method="dialog">
+          <div style="font-family: Noto Sans SC Med;" id="universal_info_dialog_text">未指定</div>
+        </form>
+        <div slot="actions">
+          <md-text-button form="form" value="close" style="font-family: Noto Sans SC Med;" @click="close_info_dialog">确定</md-text-button>
+        </div>
+      </md-dialog>
+
+      <md-dialog id="dialog_login" style="--md-dialog-container-color: var(--md-sys-color-on-tertiary); width: 25%">
         <div slot="headline" style="font-family: Noto Sans SC Med;">登录</div>
         <form id="form" slot="content" method="dialog">
           <md-filled-text-field label="用户名" style=" --md-filled-text-field-container-color: #4f585e; width: 100%;"></md-filled-text-field>
           <div style="height: 10px"/>
           <md-filled-text-field label="密码" type="password" style=" --md-filled-text-field-container-color: #4f585e; width: 100%;"></md-filled-text-field>
+          <div style="height: 20px"/>
+          <a href="#" style="color: white" @click="go_register_click">没有账号？立即注册 >>></a>
         </form>
         <div slot="actions">
           <md-text-button form="form" value="close" style="font-family: Noto Sans SC Med;">关闭</md-text-button>
           <md-outlined-button form="form" value="ok" style="font-family: Noto Sans SC Med;">立即登录</md-outlined-button>
+        </div>
+      </md-dialog>
+
+      <md-dialog id="dialog_register" style="--md-dialog-container-color: var(--md-sys-color-on-tertiary); width: 25%">
+        <div slot="headline" style="font-family: Noto Sans SC Med;">注册</div>
+        <form id="form" slot="content" method="dialog">
+          <md-filled-text-field label="用户名" id="dialog_register_username" value="" style=" --md-filled-text-field-container-color: #4f585e; width: 100%;"></md-filled-text-field>
+          <div style="height: 10px"/>
+          <md-filled-text-field label="密码" id="dialog_register_password" value="" type="password" style=" --md-filled-text-field-container-color: #4f585e; width: 100%;"></md-filled-text-field>
+          <div style="height: 10px"/>
+          <md-filled-text-field label="确认密码" id="dialog_register_confirm_password" value="" type="password" style=" --md-filled-text-field-container-color: #4f585e; width: 100%;"></md-filled-text-field>
+        </form>
+        <div slot="actions">
+          <md-text-button form="form" value="close" style="font-family: Noto Sans SC Med;" @click="go_back_login_click">返回</md-text-button>
+          <md-outlined-button form="form" value="ok" style="font-family: Noto Sans SC Med;" @click="go_register_setname_click">下一步</md-outlined-button>
+        </div>
+      </md-dialog>
+
+      <md-dialog id="dialog_register_setname" style="--md-dialog-container-color: var(--md-sys-color-on-tertiary); width: 25%">
+        <div slot="headline" style="font-family: Noto Sans SC Med;">给自己取个名字吧！</div>
+        <form id="form" slot="content" method="dialog">
+          <md-filled-text-field label="你想让他人在直播间中怎么称呼你呢..." style=" --md-filled-text-field-container-color: #4f585e; width: 100%;"></md-filled-text-field>
+        </form>
+        <div slot="actions">
+          <md-text-button form="form" value="close" style="font-family: Noto Sans SC Med;" @click="go_back_register_from_setname_click">返回</md-text-button>
+          <md-outlined-button form="form" value="ok" style="font-family: Noto Sans SC Med;">完成注册</md-outlined-button>
         </div>
       </md-dialog>
       
@@ -66,7 +114,8 @@
 </template>
 
 <script lang="ts" setup>
-import { wip_alert, userinfo_div_click } from '@/page_onclick_process';
+import { wip_alert, userinfo_div_click, go_register_click, go_back_login_click, go_register_setname_click, go_back_register_from_setname_click } from '@/page_onclick_process';
+import { close_info_dialog } from '@/universal_commands'
 </script>
 
 <style scoped>
