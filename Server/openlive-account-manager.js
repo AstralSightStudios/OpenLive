@@ -48,7 +48,8 @@ export function Login(username, password){
                 "status": true,
                 "msg": "登录成功",
                 "data":{
-                    "token": token
+                    "token": token,
+                    "account_object": ac_obj
                 }
             })
         }
@@ -128,16 +129,25 @@ export function GetAccountObjectByDisplayname(displayname) {
     return null
 }
 
-export function GetSTRINGAccountObjectByAllowedToken(token) {
+export function TokenLogin(token) {
     var target_uid = global.ALLOW_TOKENS[token]
     if(target_uid != undefined){
         for (let account of global.accounts_database.ACCOUNTS) {
-            if (account.UID === uid) {
-                return JSON.stringify(account)
+            if (account.UID === target_uid) {
+                return JSON.stringify({
+                    "status": true,
+                    "msg": "登录成功",
+                    "data":{
+                        "account_object": account
+                    }
+                })
             }
         }
     }
-    return "bad token"
+    return JSON.stringify({
+        "status": false,
+        "msg": "登录凭据已失效，请重新进行登录"
+    })
 }
 
 export function sync_account_db_file(){

@@ -1,11 +1,12 @@
 import { show_error_dialog, show_info_dialog } from './universal_commands'
+import { BuildWSMessage } from './ws_connect'
 
 export function wip_alert(){
     show_info_dialog("Work in Prograss (WIP)","该功能正在开发中，暂未开放")
 }
 
 export function userinfo_div_click(){
-    if(document.getElementById("username_text")?.innerHTML === "未登录"){
+    if(!(window as any).login_info.logged){
         //@ts-ignore
         document.getElementById("dialog_login").show()
     }
@@ -49,6 +50,15 @@ export function go_register_setname_click(){
     else{
         show_error_dialog("发生错误","三项必填内容中有遗漏")
     }
+}
+
+export function login_click(){
+    (window as any).ws_connect.send(BuildWSMessage("LOGIN_REQUEST",{
+        //@ts-ignore
+        "username": document.getElementById("dialog_login_username").value,
+        //@ts-ignore
+        "password": document.getElementById("dialog_login_password").value,
+    }));
 }
 
 export function send_chat_msg(){

@@ -27,7 +27,7 @@ Since OpenLive has not been fully developed, it is hard to say how to build it, 
 | Live streaming push and pull (using RTMP+HTTP-FLV) | 🟢 | 🟢 |
 | Live broadcast basic information display | 🟢 | 🟢 |
 | Basic information display of anchor | 🟢 | 🟢 |
-| Live account system | 🔵 | 🟡 |
+| Live account system | 🔵 | 🔵 |
 | Live chat function (Chat) | 🟡 | 🟡 |
 | Host home page functions (including live playback, etc.) | 🟣 | 🟣 |
 | Live gift function (including the Gold and Exp mechanism of the account system) | 🟣 | 🟣 |

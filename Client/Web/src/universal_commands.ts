@@ -20,3 +20,13 @@ export function close_info_dialog(){
     //@ts-ignore
     document.getElementById("universal_info_dialog").close()
 }
+
+export function close_login_dialog(){
+    //@ts-ignore
+    document.getElementById("dialog_login").close()
+}
+
+export function refresh_ui_userinfo(){
+    //@ts-ignore
+    document.getElementById("username_text").innerHTML = (window as any).display_name
+}

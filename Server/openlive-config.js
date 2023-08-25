@@ -16,6 +16,7 @@ export const default_config = {
     "APP_BROWSER_TITLE": "OpenLive", //浏览器页面标题
     "PORT": 80, //直播主页面端口
     "PANEL_PORT": 8080, //直播管理面板端口
+    "WS_PORT": 8010, //websocket端口
     "OPEN_REGISTER": true, //开放账号注册,
     "UI_CUSTOM_CONFIG": default_config_ui_custom,
     "LIVESTREAM_CONFIG": default_config_livestream

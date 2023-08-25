@@ -24,15 +24,15 @@
       <md-dialog id="dialog_login" style="--md-dialog-container-color: var(--md-sys-color-on-tertiary); width: 25%">
         <div slot="headline" style="font-family: Noto Sans SC Med;">登录</div>
         <form id="form" slot="content" method="dialog">
-          <md-filled-text-field label="用户名" style=" --md-filled-text-field-container-color: #4f585e; width: 100%;"></md-filled-text-field>
+          <md-filled-text-field label="用户名" id="dialog_login_username" style=" --md-filled-text-field-container-color: #4f585e; width: 100%;"></md-filled-text-field>
           <div style="height: 10px"/>
-          <md-filled-text-field label="密码" type="password" style=" --md-filled-text-field-container-color: #4f585e; width: 100%;"></md-filled-text-field>
+          <md-filled-text-field label="密码" type="password" id="dialog_login_password" style=" --md-filled-text-field-container-color: #4f585e; width: 100%;"></md-filled-text-field>
           <div style="height: 20px"/>
           <a href="#" style="color: white" @click="go_register_click">没有账号？立即注册 >>></a>
         </form>
         <div slot="actions">
-          <md-text-button form="form" value="close" style="font-family: Noto Sans SC Med;">关闭</md-text-button>
-          <md-outlined-button form="form" value="ok" style="font-family: Noto Sans SC Med;">立即登录</md-outlined-button>
+          <md-text-button form="form" value="close" style="font-family: Noto Sans SC Med;" @click="close_login_dialog">关闭</md-text-button>
+          <md-outlined-button form="form" value="ok" style="font-family: Noto Sans SC Med;" @click="login_click">立即登录</md-outlined-button>
         </div>
       </md-dialog>
 
@@ -54,7 +54,7 @@
       <md-dialog id="dialog_register_setname" style="--md-dialog-container-color: var(--md-sys-color-on-tertiary); width: 25%">
         <div slot="headline" style="font-family: Noto Sans SC Med;">给自己取个名字吧！</div>
         <form id="form" slot="content" method="dialog">
-          <md-filled-text-field label="你想让他人在直播间中怎么称呼你呢..." style=" --md-filled-text-field-container-color: #4f585e; width: 100%;"></md-filled-text-field>
+          <md-filled-text-field label="你想让他人在直播间中怎么称呼你呢..." id="dialog_register_setname_name" style=" --md-filled-text-field-container-color: #4f585e; width: 100%;"></md-filled-text-field>
         </form>
         <div slot="actions">
           <md-text-button form="form" value="close" style="font-family: Noto Sans SC Med;" @click="go_back_register_from_setname_click">返回</md-text-button>
@@ -114,8 +114,8 @@
 </template>
 
 <script lang="ts" setup>
-import { wip_alert, userinfo_div_click, go_register_click, go_back_login_click, go_register_setname_click, go_back_register_from_setname_click } from '@/page_onclick_process';
-import { close_info_dialog } from '@/universal_commands'
+import { wip_alert, userinfo_div_click, go_register_click, go_back_login_click, go_register_setname_click, go_back_register_from_setname_click, login_click } from '@/page_onclick_process';
+import { close_info_dialog, close_login_dialog } from '@/universal_commands'
 </script>
 
 <style scoped>
