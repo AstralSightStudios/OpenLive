@@ -72,6 +72,11 @@ export function register_click(){
     }));
 }
 
-export function send_chat_msg(){
-
+export function send_chat_msg_click(){
+    (window as any).ws_connect.send(BuildWSMessage("CHAT_SEND_TEXT_REQUEST",{
+        //@ts-ignore
+        "send_text": document.getElementById("chat_msg_input").value
+    }))
+    //@ts-ignore
+    document.getElementById("chat_msg_input").value = ""
 }

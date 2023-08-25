@@ -25,7 +25,6 @@ export function runWSS() {
         }
     });
 
-
     // 监听 connection 事件
     ws_client.on('connection', function (ws) {
         ws.on('message', function (message) {

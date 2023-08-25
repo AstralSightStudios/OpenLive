@@ -11,8 +11,8 @@ export function write_connected_notify(uid){
 }
 
 export function write_message(message,uid){
-    messgae = anti_xss_replace(message)
-    fs.appendFileSync("chat_area_div_content.html",AccountManager.GetAccountObjectByUid(uid).DISPLAY_NAME + ": " + message + "<br/>")
+    message = anti_xss_replace(message)
+    fs.appendFileSync("chat_area_div_content.html","<div>" + AccountManager.GetAccountObjectByUid(uid).DISPLAY_NAME + ": " + message + "</div>\n")
 }
 
 export function init_chat(){
