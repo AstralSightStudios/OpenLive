@@ -61,11 +61,17 @@ export function Login(username, password){
 }
 
 export function Register(username, password, display_name){
+    if(!global.config.OPEN_REGISTER){
+        return JSON.stringify({
+            "status": false,
+            "msg": "直播间已关闭注册"
+        })
+    }
     if(isValidString(username) && isValidString(display_name)){
         var ac_obj = GetAccountObjectByUsername(username)
         if(ac_obj === null){
             global.accounts_database.ACCOUNTS.push({
-                "UID": fs.readFileSync("currentuid"),
+                "UID": Number(fs.readFileSync("currentuid")),
                 "USERNAME": chat_manager.anti_xss_replace(username),
                 "PASSWORD": password,
                 "DISPLAY_NAME": chat_manager.anti_xss_replace(display_name),
@@ -151,16 +157,16 @@ export function TokenLogin(token) {
 }
 
 export function sync_account_db_file(){
-    fs.writeFileSync("account.json",JSON.stringify(global.accounts_database))
+    fs.writeFileSync("accounts.json",JSON.stringify(global.accounts_database))
 }
 
 export function init_account_system() {
     if (!fs.existsSync("currentuid")){
         fs.writeFileSync("currentuid","0")
     }
-    if (fs.existsSync("account_database.json")) {
+    if (fs.existsSync("accounts.json")) {
         console.log("Account System: OK")
-        return JSON.parse(fs.readFileSync("account_database.json"))
+        return JSON.parse(fs.readFileSync("accounts.json").toString())
     }
     else {
         console.log("Creating default account database file...")

@@ -17,6 +17,7 @@ export const default_config = {
     "PORT": 80, //直播主页面端口
     "PANEL_PORT": 8080, //直播管理面板端口
     "WS_PORT": 8010, //websocket端口
+    "SERVER_QPS_LOCK": 10, //服务器的QPS将最高锁定在多少，目前一般用于检测chat，越高对服务器性能要求越高
     "OPEN_REGISTER": true, //开放账号注册,
     "UI_CUSTOM_CONFIG": default_config_ui_custom,
     "LIVESTREAM_CONFIG": default_config_livestream

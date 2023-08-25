@@ -7,7 +7,7 @@ export function anti_xss_replace(message){
 }
 
 export function write_connected_notify(uid){
-    fs.appendFileSync("chat_area_div_content.html","用户 " + AccountManager.GetAccountObjectByUid(uid).DISPLAY_NAME + " 进入直播间<br/>")
+    fs.appendFileSync("chat_area_div_content.html","<div style=\"color: rgb(138, 138, 138)\">用户 " + AccountManager.GetAccountObjectByUid(uid).DISPLAY_NAME + " 进入直播间</div>\n")
 }
 
 export function write_message(message,uid){

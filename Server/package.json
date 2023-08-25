@@ -13,5 +13,8 @@
     "express": "^4.18.2",
     "node-media-server": "^2.6.2",
     "ws": "^8.13.0"
+  },
+  "devDependencies": {
+    "diff": "^5.1.0"
   }
 }
