@@ -61,6 +61,17 @@ export function login_click(){
     }));
 }
 
+export function register_click(){
+    (window as any).ws_connect.send(BuildWSMessage("REGISTER_REQUEST",{
+        //@ts-ignore
+        "username": document.getElementById("dialog_register_username").value,
+        //@ts-ignore
+        "password": document.getElementById("dialog_register_password").value,
+        //@ts-ignore
+        "display_name": document.getElementById("dialog_register_setname_name").value,
+    }));
+}
+
 export function send_chat_msg(){
 
 }

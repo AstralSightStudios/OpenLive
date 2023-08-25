@@ -26,7 +26,17 @@ export function close_login_dialog(){
     document.getElementById("dialog_login").close()
 }
 
+export function close_register_dialog(){
+    //@ts-ignore
+    document.getElementById("dialog_register").close()
+}
+
+export function close_register_setname_dialog(){
+    //@ts-ignore
+    document.getElementById("dialog_register_setname").close()
+}
+
 export function refresh_ui_userinfo(){
     //@ts-ignore
-    document.getElementById("username_text").innerHTML = (window as any).display_name
+    document.getElementById("username_text").innerHTML = (window as any).login_info.display_name
 }

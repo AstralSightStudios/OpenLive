@@ -58,7 +58,7 @@
         </form>
         <div slot="actions">
           <md-text-button form="form" value="close" style="font-family: Noto Sans SC Med;" @click="go_back_register_from_setname_click">返回</md-text-button>
-          <md-outlined-button form="form" value="ok" style="font-family: Noto Sans SC Med;">完成注册</md-outlined-button>
+          <md-outlined-button form="form" value="ok" style="font-family: Noto Sans SC Med;" @click="register_click">完成注册</md-outlined-button>
         </div>
       </md-dialog>
       
@@ -114,7 +114,7 @@
 </template>
 
 <script lang="ts" setup>
-import { wip_alert, userinfo_div_click, go_register_click, go_back_login_click, go_register_setname_click, go_back_register_from_setname_click, login_click } from '@/page_onclick_process';
+import { wip_alert, userinfo_div_click, go_register_click, go_back_login_click, go_register_setname_click, go_back_register_from_setname_click, login_click, register_click } from '@/page_onclick_process';
 import { close_info_dialog, close_login_dialog } from '@/universal_commands'
 </script>
 
