@@ -151,7 +151,7 @@ export function TokenLogin(token) {
 }
 
 export function sync_account_db_file(){
-    fs.writeFileSync("account_database.json",JSON.stringify(global.accounts_database))
+    fs.writeFileSync("account.json",JSON.stringify(global.accounts_database))
 }
 
 export function init_account_system() {
