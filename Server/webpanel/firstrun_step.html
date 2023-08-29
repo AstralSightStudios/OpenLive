@@ -1,0 +1,19 @@
+<title>管理面板</title>
+
+<body>
+    <h2>欢迎使用OpenLive开源项目</h2>
+    <h3>这似乎是您第一次使用OpenLive，我们将帮助您设置相关事项，以及显示一些说明，还请您仔细观看</h3>
+    <h4>我们假设您已经有一定的服务器与网站运维经验，并已仔细阅读过来自OpenLive项目官方的文档。对于OpenLive项目，管理面板的网页、面向客户的网页、面向客户的API、面向管理面板的API都是由同一个服务端程序提供的，它们分别运行在不同的端口上，您可以在config.json中指配它们对应的端口</h4>
+    <h4>为了您服务器的安全，我们强烈建议您套个域名，并接入各种CDN服务（例如CloudFlare）来抵御攻击，并且，由于使用到的端口过多，我们强烈建议您使用NGINX反向代理来配置您的服务器，但至于到底是什么方案，什么思路，就看您自己了</h4>
+    <h4>好的，接下来，设置本服务器的第一个管理面板账号，管理面板账号只能用于登录管理面板，与面向用户提供的普通账号互相独立，请输入你所期望的用户名与密码：</h4>
+    <input placeholder="用户名" id="firstrun_step_input_panel_account_setup_username"></input>
+    <input placeholder="密码" id="firstrun_step_input_panel_account_setup_password" type="password"></input>
+    <h4>然后，你需要设置一个推流密钥，推流密钥就相当于一个密码，如果别人拥有了它，其他人将能够冒充你进行直播并干扰你的直播流。</h4>
+    <h4>因此，请尽可能设置一个复杂的推流密钥，当然你也可以点击按钮随便生成一个。推流密钥不像密码那样需要牢记，你随时都可以回到管理面板来查看它，因此请尽情发挥你脸滚键盘的能力</h4>
+    <input id="firstrun_step_input_panel_streamkey_setup" placeholder="推流密钥" style="width: 500px;"></input>
+    <button onclick="gen_streamkey()">随机生成</button>
+    <h4>现在，恭喜你完成了初始设置，在检查一切无误后，点击下面的按钮就能保存这些设置并跳转到登录页面。你在上面设置的一切，今后都可以在管理面板中修改。</h4>
+    <button onclick="finish()">完成</button>
+</body>
+
+<script src="./firstrun_step.js"></script>

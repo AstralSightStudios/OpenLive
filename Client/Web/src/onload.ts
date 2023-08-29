@@ -11,7 +11,7 @@ export function onload_steps(){
     //@ts-ignore
     window.flvjs = flvjs
 
-    axios.default.get(app_config["server_addr"] + "/app_info")
+    axios.default.get(app_config["server_addr"] + "/api/app_info")
     .then(res => {
         document.title = res.data.browser_title;
         (window as any).app_info = res.data
@@ -20,7 +20,7 @@ export function onload_steps(){
         console.log(err);
     });
 
-    axios.default.get(app_config["server_addr"] + "/live_info")
+    axios.default.get(app_config["server_addr"] + "/api/live_info")
     .then(res => {
         console.log(res.data.livestream_addr)
         var player = videojs('live_player_vjs', {

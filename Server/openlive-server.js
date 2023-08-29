@@ -1,18 +1,25 @@
 import express from 'express'
-import * as openlive_config_js from "./openlive-config.js"
-
-global.test_global = 1
 
 export function runOpenLiveServer() {
     const openlive_server = express()
-    const config = openlive_config_js.GetConfig()
+    const config = global.config
 
     openlive_server.use((req, res, next) => {
         res.header("Access-Control-Allow-Origin", "*"); // 允许任意来源
         next();
     });
 
-    openlive_server.get('/app_info', function (req, res) {
+    openlive_server.get("/:filename",function(req,res){
+        var filename = req.params.filename
+
+        res.send(fs.readFileSync("www/" + filename).toString())
+    })
+
+    openlive_server.get("/",function(req,res){
+        res.send(fs.readFileSync("www/" + "index.html").toString())
+    })
+
+    openlive_server.get('/api/app_info', function (req, res) {
         res.send(JSON.stringify({
             "name": config["APP_NAME"],
             "browser_title": config["APP_BROWSER_TITLE"],
@@ -21,7 +28,7 @@ export function runOpenLiveServer() {
         }))
     })
 
-    openlive_server.get("/live_info", function (req, res){
+    openlive_server.get("/api/live_info", function (req, res){
         res.send(
             JSON.stringify({
                 "live_title": "OpenLive Sample <仅供测试>", //直播间标题
