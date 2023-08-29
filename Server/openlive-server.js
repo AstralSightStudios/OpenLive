@@ -4,18 +4,32 @@ export function runOpenLiveServer() {
     const openlive_server = express()
     const config = global.config
 
+    // 定义一个转发的中间件函数
+    function forwardStream(req, res, next) {
+        // 获取请求的路径
+        const path = req.path;
+        if (path === '/stream.flv') {
+            res.redirect("http://127.0.0.1:" + global.config.LIVESTREAM_CONFIG.HTTP_FLV_PORT + "/openlive/" + global.panel_save.STREAMKEY + ".flv");
+        } else {
+            // 否则，继续执行下一个中间件函数
+            next();
+        }
+    }
+
+    openlive_server.use(forwardStream)
+
     openlive_server.use((req, res, next) => {
         res.header("Access-Control-Allow-Origin", "*"); // 允许任意来源
         next();
     });
 
-    openlive_server.get("/:filename",function(req,res){
+    openlive_server.get("/:filename", function (req, res) {
         var filename = req.params.filename
 
         res.send(fs.readFileSync("www/" + filename).toString())
     })
 
-    openlive_server.get("/",function(req,res){
+    openlive_server.get("/", function (req, res) {
         res.send(fs.readFileSync("www/" + "index.html").toString())
     })
 
@@ -28,20 +42,20 @@ export function runOpenLiveServer() {
         }))
     })
 
-    openlive_server.get("/api/live_info", function (req, res){
+    openlive_server.get("/api/live_info", function (req, res) {
         res.send(
             JSON.stringify({
-                "live_title": "OpenLive Sample <仅供测试>", //直播间标题
+                "live_title": global.panel_save.LIVE_TITLE, //直播间标题
                 "live_description": "OpenLive Testing...", //直播间简介
-                "live_status": "now", //now=正在直播 late=到达计划时间但没开播 plan=下次直播时间已计划 empty=没在播也没计划时间
+                "live_status": global.is_living,
                 "live_plan_next_time": "Unknown", //已计划的下次直播时间
-                "anchor_name": "嘉然今天吃什么（OpenLive Test）", //主播名称
-                "anchor_profile_img_url": "https://i03piccdn.sogoucdn.com/1fdbb47f919ad9d1", //主播头像URL
+                "anchor_name": global.panel_save.ANCHOR_NAME, //主播名称
+                "anchor_profile_img_url": global.panel_save.ANCHOR_PROFILE_IMG_URL, //主播头像URL
                 "login_required": false,  //是否必须要登录才能看直播
                 "livestream_type": "http-flv", //直播流类型 hls http-flv webrtc
-                "livestream_addr": "http://127.0.0.1:8000/livemystream12345/mystream.flv", //直播流地址
-                "websocket_addr": "ws://127.0.0.1:8010/ws_connect",
-                "enable_chat": true, //是否允许聊天
+                "livestream_addr": "./stream.flv", //直播流地址
+                "websocket_addr": "ws://" + global.config.SERVER_PORT_WEBSOCKETSERVER_PUBLIC_DOMAIN_OR_IP + "/ws_connect",
+                "enable_chat": global.panel_save.ENABLE_CHAT, //是否允许聊天
                 "manager_list": [] //房管列表
             })
         )
