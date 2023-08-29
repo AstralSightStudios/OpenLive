@@ -23,18 +23,18 @@
         <br/>
         <button style="width: 200px;height: 50px;">保存推流码更改</button>
         <h2>直播页面选项</h2>
-        <input placeholder="直播标题" style="width: 350px;">
-        <input placeholder="直播简介（未实装）">
-        <input placeholder="下次直播时间（未实装）">
+        <input id="input_livetitle" placeholder="直播标题" style="width: 350px;">
+        <input placeholder="直播简介（未实装）" disabled>
+        <input placeholder="下次直播时间（未实装）" disabled>
         <br/>
-        <input placeholder="主播名称">
-        <input placeholder="主播头像URL（可以上传到图床再复制过来）" style="width: 500px;">
+        <input id="input_anchor_name" placeholder="主播名称">
+        <input id="input_anchor_profile_img_url" placeholder="主播头像URL（可以上传到图床再复制过来）" style="width: 500px;">
         <br/>
         <br/>
-        <input type="checkbox" name="checkbox_login_required" id="checkbox_login_required">
-        <label for="checkbox_login_required">是否需要登录才能查看直播</label>
+        <input type="checkbox" name="checkbox_login_required" id="checkbox_login_required" disabled>
+        <label for="checkbox_login_required">是否需要登录才能查看直播（未实装）</label>
         <br/>
-        <input type="checkbox" name="checkbox_login_required" id="checkbox_login_required" checked>
+        <input type="checkbox" name="checkbox_login_required" id="checkbox_can_chat" checked>
         <label for="checkbox_login_required">允许观众在聊天区聊天</label>
         <br/>
         <br/>

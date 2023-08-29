@@ -73,17 +73,104 @@ export function runPanelServer() {
     })
 
     openlive_panel_server.post("/panel_api/update_streamkey", function (req, res) {
-        let post_body = JSON.parse(req.body)
-        if (global.ALLOW_TOKENS[post_body.token] && post_body.new_streamkey != "" && post_body.new_streamkey != null && post_body.new_streamkey != undefined) {
-            global.panel_save.STREAMKEY = post_body.new_streamkey
-            sync_panel_save_file()
-        }
-        else {
-            res.send(JSON.stringify({
-                "status": false,
-                "msg": "post内容不符合要求或token已失效"
-            }))
-        }
+        // 定义一个变量来存储请求体中的原始数据
+        let rawData = '';
+        // 监听data事件，将接收到的数据拼接到rawData变量中
+        req.on('data', (chunk) => {
+            rawData += chunk;
+        });
+        // 监听end事件，表示数据接收完毕，打印rawData变量
+        req.on('end', () => {
+            let post_body = JSON.parse(rawData)
+            if (global.ALLOW_TOKENS[post_body.token] && post_body.new_streamkey != "" && post_body.new_streamkey != null && post_body.new_streamkey != undefined) {
+                global.panel_save.STREAMKEY = post_body.new_streamkey
+                sync_panel_save_file()
+            }
+            else {
+                res.send(JSON.stringify({
+                    "status": false,
+                    "msg": "post内容不符合要求或token已失效"
+                }))
+            }
+        })
+    })
+
+    openlive_panel_server.post("/panel_api/clear_chat", function (req, res) {
+        // 定义一个变量来存储请求体中的原始数据
+        let rawData = '';
+        // 监听data事件，将接收到的数据拼接到rawData变量中
+        req.on('data', (chunk) => {
+            rawData += chunk;
+        });
+        // 监听end事件，表示数据接收完毕，打印rawData变量
+        req.on('end', () => {
+            let post_body = JSON.parse(rawData)
+            if (global.ALLOW_TOKENS[post_body.token]) {
+                fs.writeFileSync("chat_area_div_content.html","")
+                res.send(JSON.stringify({
+                    "status": true,
+                    "msg": "chat内容已清除"
+                }))
+            }
+            else {
+                res.send(JSON.stringify({
+                    "status": false,
+                    "msg": "post内容不符合要求或token已失效"
+                }))
+            }
+        })
+    })
+
+    openlive_panel_server.post("/panel_api/emergency_shutdown", function (req, res) {
+        // 定义一个变量来存储请求体中的原始数据
+        let rawData = '';
+        // 监听data事件，将接收到的数据拼接到rawData变量中
+        req.on('data', (chunk) => {
+            rawData += chunk;
+        });
+        // 监听end事件，表示数据接收完毕，打印rawData变量
+        req.on('end', () => {
+            let post_body = JSON.parse(rawData)
+            if (global.ALLOW_TOKENS[post_body.token]) {
+                process.exit(0)
+            }
+            else {
+                res.send(JSON.stringify({
+                    "status": false,
+                    "msg": "post内容不符合要求或token已失效"
+                }))
+            }
+        })
+    })
+
+    openlive_panel_server.post("/panel_api/update_livepage", function (req, res) {
+        // 定义一个变量来存储请求体中的原始数据
+        let rawData = '';
+        // 监听data事件，将接收到的数据拼接到rawData变量中
+        req.on('data', (chunk) => {
+            rawData += chunk;
+        });
+        // 监听end事件，表示数据接收完毕，打印rawData变量
+        req.on('end', () => {
+            let post_body = JSON.parse(rawData)
+            if (global.ALLOW_TOKENS[post_body.token]) {
+                global.panel_save.LIVE_TITLE = post_body.livetitle
+                global.panel_save.ANCHOR_NAME = post_body.anchor_name
+                global.panel_save.ANCHOR_PROFILE_IMG_URL = post_body.anchor_profile_img_url
+                global.panel_save.ENABLE_CHAT = post_body.can_chat
+                sync_panel_save_file()
+                res.send(JSON.stringify({
+                    "status": true,
+                    "msg": "直播页面选项修改成功"
+                }))
+            }
+            else {
+                res.send(JSON.stringify({
+                    "status": false,
+                    "msg": "post内容不符合要求或token已失效"
+                }))
+            }
+        })
     })
 
     openlive_panel_server.post("/panel_api/first_step_confirm_panel_settings", function (req, res) {
