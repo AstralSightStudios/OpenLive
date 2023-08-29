@@ -1,0 +1,28 @@
+name: Build and Upload
+# 当 push 或 pull request 事件发生在 main 分支时，触发工作流
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+# 定义一个名为 build-and-upload 的工作
+jobs:
+  build-and-upload:
+    # 运行在 windows-latest 环境下
+    runs-on: windows-latest
+    # 定义一个名为 steps 的步骤列表
+    steps:
+      # 第一步：使用 actions/checkout@v2 动作克隆仓库到运行器
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      # 第二步：使用 run 命令执行 build.bat 脚本
+      - name: Run build.bat script
+        run: .\build.bat
+      # 第三步：使用 actions/upload-artifact@v2 动作打包并上传 build 文件夹作为工件
+      - name: Upload build folder as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          # 工件的名称为 project-build
+          name: project-build
+          # 工件的路径为 build 文件夹
+          path: build
