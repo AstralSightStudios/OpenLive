@@ -1,7 +1,10 @@
 // 导入node-media-server模块
 import NodeMediaServer from 'node-media-server'
 
-export function runLiveStreamServer(rtmp_port,http_flv_port){
+export function runLiveStreamServer(rtmp_port, http_flv_port) {
+    // 设置最大连接数为1
+    const maxConnections = 1;
+
     // 配置参数
     const config = {
         // RTMP相关参数
@@ -25,4 +28,18 @@ export function runLiveStreamServer(rtmp_port,http_flv_port){
 
     // 启动服务
     nms.run();
+
+    nms.on('prePublish', (id, StreamPath, args) => {
+        console.log('[NodeEvent on prePublish]', `id=${id} StreamPath=${StreamPath} args=${JSON.stringify(args)}`);
+
+        // 获取当前连接数
+        var connections = nms.getSessionCount();
+
+        // 如果超过最大连接数，拒绝连接并返回错误码和错误信息
+        if (connections > maxConnections) {
+            var session = nms.getSession(id);
+            session.reject();
+            session.sendStatusMessage(session.publishStreamId, 'error', 'NetStream.Publish.BadName', 'Maximum connections exceeded');
+        }
+    });
 }

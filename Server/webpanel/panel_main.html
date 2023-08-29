@@ -9,14 +9,44 @@
         <div>WebSocket状态：2人连接</div>
         <div>HTTP-FLV拉流状态：无人拉流</div>
         <h2>主选项</h2>
-        <button>开始直播</button>
-        <button disabled>结束直播</button>
+        <div>请注意：一定要在使用软件进行推流后点击下面的“开始直播”按钮，并在下播时在软件中结束推流时点击下面的“结束直播”按钮，否则用户要么就会一直显示你没在直播，要么就会一直显示你一直在直播（但事实上你没有）</div>
+        <br/>
+        <button id="button_start_live">开始直播</button>
+        <button id="button_stop_live" disabled="disabled">结束直播</button>
         <button>清空chat</button>
-        <button>config在线编辑器</button>
-        <button>重启OpenLive</button>
+        <button disabled>房管列表（未实装）</button>
+        <button disabled>config在线编辑器（未实装）</button>
         <button>紧急关站</button>
         <br/>
-        <div>推流码：</div><input placeholder="StreamKey" style="width: 500px"></input><button>重新生成推流码</button><button>保存推流码更改</button>
+        <div>推流码：</div><input id="input_streamkey" placeholder="StreamKey" style="width: 600px"><button>重新生成推流码</button>
+        <br/>
+        <br/>
+        <button style="width: 200px;height: 50px;">保存推流码更改</button>
+        <h2>直播页面选项</h2>
+        <input placeholder="直播标题" style="width: 350px;">
+        <input placeholder="直播简介（未实装）">
+        <input placeholder="下次直播时间（未实装）">
+        <br/>
+        <input placeholder="主播名称">
+        <input placeholder="主播头像URL（可以上传到图床再复制过来）" style="width: 500px;">
+        <br/>
+        <br/>
+        <input type="checkbox" name="checkbox_login_required" id="checkbox_login_required">
+        <label for="checkbox_login_required">是否需要登录才能查看直播</label>
+        <br/>
+        <input type="checkbox" name="checkbox_login_required" id="checkbox_login_required" checked>
+        <label for="checkbox_login_required">允许观众在聊天区聊天</label>
+        <br/>
+        <br/>
+        <div>直播方案：</div>
+        <select>
+            <option value="http-flv">RTMP推流+HTTP-FLV拉流</option>
+            <option value="webrtc" disabled>WebRTC</option>
+        </select>
+        <br/>
+        <br/>
+        <br/>
+        <button style="width: 200px;height: 50px;">保存直播页面选项</button>
         <h2>数据分析</h2>
         <h4>观众地域</h4>
         <div>该功能暂未开放</div>

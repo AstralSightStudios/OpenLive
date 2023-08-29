@@ -28,6 +28,12 @@ function finish() {
                 // 解析响应数据并打印到控制台
                 var data = JSON.parse(xhr.responseText);
                 console.log(data);
+                if(data.status){
+                    alert("成功: " + data.msg)
+                }
+                else{
+                    alert("失败: " + data.msg)
+                }
             }
         };
     }

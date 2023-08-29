@@ -15,6 +15,7 @@
     "ws": "^8.13.0"
   },
   "devDependencies": {
+    "body-parser": "^1.20.2",
     "diff": "^5.1.0"
   }
 }
