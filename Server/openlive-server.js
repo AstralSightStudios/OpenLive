@@ -1,4 +1,5 @@
 import express from 'express'
+import * as fs from 'fs'
 
 export function runOpenLiveServer() {
     const openlive_server = express()
@@ -18,16 +19,12 @@ export function runOpenLiveServer() {
 
     openlive_server.use(forwardStream)
 
+    openlive_server.use(express.static('www'))
+
     openlive_server.use((req, res, next) => {
         res.header("Access-Control-Allow-Origin", "*"); // 允许任意来源
         next();
     });
-
-    openlive_server.get("/:filename", function (req, res) {
-        var filename = req.params.filename
-
-        res.send(fs.readFileSync("www/" + filename).toString())
-    })
 
     openlive_server.get("/", function (req, res) {
         res.send(fs.readFileSync("www/" + "index.html").toString())
