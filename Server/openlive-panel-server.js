@@ -82,9 +82,13 @@ export function runPanelServer() {
         // 监听end事件，表示数据接收完毕，打印rawData变量
         req.on('end', () => {
             let post_body = JSON.parse(rawData)
-            if (global.ALLOW_TOKENS[post_body.token] && post_body.new_streamkey != "" && post_body.new_streamkey != null && post_body.new_streamkey != undefined) {
+            if (global.ALLOW_TOKENS[post_body.token] != void (0) && global.ALLOW_TOKENS[post_body.token] != undefined && post_body.new_streamkey != "" && post_body.new_streamkey != null && post_body.new_streamkey != undefined) {
                 global.panel_save.STREAMKEY = post_body.new_streamkey
                 sync_panel_save_file()
+                res.send(JSON.stringify({
+                    "status": true,
+                    "msg": "推流码修改成功"
+                }))
             }
             else {
                 res.send(JSON.stringify({
@@ -105,7 +109,7 @@ export function runPanelServer() {
         // 监听end事件，表示数据接收完毕，打印rawData变量
         req.on('end', () => {
             let post_body = JSON.parse(rawData)
-            if (global.ALLOW_TOKENS[post_body.token]) {
+            if (global.ALLOW_TOKENS[post_body.token] != void (0) && global.ALLOW_TOKENS[post_body.token] != undefined) {
                 fs.writeFileSync("chat_area_div_content.html","")
                 res.send(JSON.stringify({
                     "status": true,
@@ -131,7 +135,7 @@ export function runPanelServer() {
         // 监听end事件，表示数据接收完毕，打印rawData变量
         req.on('end', () => {
             let post_body = JSON.parse(rawData)
-            if (global.ALLOW_TOKENS[post_body.token]) {
+            if (global.ALLOW_TOKENS[post_body.token] != void (0) && global.ALLOW_TOKENS[post_body.token] != undefined) {
                 process.exit(0)
             }
             else {
@@ -153,7 +157,7 @@ export function runPanelServer() {
         // 监听end事件，表示数据接收完毕，打印rawData变量
         req.on('end', () => {
             let post_body = JSON.parse(rawData)
-            if (global.ALLOW_TOKENS[post_body.token]) {
+            if (global.ALLOW_TOKENS[post_body.token] != void (0) && global.ALLOW_TOKENS[post_body.token] != undefined) {
                 global.panel_save.LIVE_TITLE = post_body.livetitle
                 global.panel_save.ANCHOR_NAME = post_body.anchor_name
                 global.panel_save.ANCHOR_PROFILE_IMG_URL = post_body.anchor_profile_img_url
@@ -162,6 +166,35 @@ export function runPanelServer() {
                 res.send(JSON.stringify({
                     "status": true,
                     "msg": "直播页面选项修改成功"
+                }))
+            }
+            else {
+                res.send(JSON.stringify({
+                    "status": false,
+                    "msg": "post内容不符合要求或token已失效"
+                }))
+            }
+        })
+    })
+
+    openlive_panel_server.post("/panel_api/get_serv_info", function (req, res) {
+        // 定义一个变量来存储请求体中的原始数据
+        let rawData = '';
+        // 监听data事件，将接收到的数据拼接到rawData变量中
+        req.on('data', (chunk) => {
+            rawData += chunk;
+        });
+        // 监听end事件，表示数据接收完毕，打印rawData变量
+        req.on('end', () => {
+            let post_body = JSON.parse(rawData)
+            if (global.ALLOW_TOKENS[post_body.token] != void (0) && global.ALLOW_TOKENS[post_body.token] != undefined) {
+                res.send(JSON.stringify({
+                    "is_living": global.is_living,
+                    "streamkey": global.panel_save.STREAMKEY,
+                    "livetitle": global.panel_save.LIVE_TITLE,
+                    "anchorname": global.panel_save.ANCHOR_NAME,
+                    "anchorprofileimgurl": global.panel_save.ANCHOR_PROFILE_IMG_URL,
+                    "can_chat": global.panel_save.ENABLE_CHAT
                 }))
             }
             else {

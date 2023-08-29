@@ -48,7 +48,7 @@ export function runWSS() {
                 if (msg.action === "REGISTER_REQUEST" && msg.login_info.logged === false) {
                     ws.send(JSON.stringify({ "resp_action": "REGISTER_REQUEST_RESP", "resp": AccountManager.Register(msg.action_data.username, msg.action_data.password, msg.action_data.display_name) }))
                 }
-                if (global.ALLOW_TOKENS[msg.login_info.token]) {//受保护区域判断
+                if (global.ALLOW_TOKENS[msg.login_info.token] != void (0) && global.ALLOW_TOKENS[msg.login_info.token] != undefined) {//受保护区域判断
                     if (msg.action === "CONNECTED_NOTIFY" && msg.login_info.logged === true && AccountManager.IsVaildAccount(msg.login_info.uid)) {
                         if (global.config.UI_CUSTOM_CONFIG.VIEW_CONNECTED_NOTIFY_IN_CHAT) {
                             ChatManager.write_connected_notify(msg.login_info.uid)

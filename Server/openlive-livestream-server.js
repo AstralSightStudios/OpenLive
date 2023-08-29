@@ -42,4 +42,12 @@ export function runLiveStreamServer(rtmp_port, http_flv_port) {
             session.sendStatusMessage(session.publishStreamId, 'error', 'NetStream.Publish.BadName', 'Maximum connections exceeded');
         }
     });
+
+    nms.on('postPublish', (id, StreamPath, args) => {
+        global.is_living = true
+    });
+
+    nms.on('donePublish', (id, StreamPath, args) => {
+        global.is_living = false
+    });
 }

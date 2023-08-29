@@ -17,6 +17,8 @@ global.accounts_database = accounts_database
 const panel_save = init_panel_save()
 global.panel_save = panel_save
 
+global.is_living = false
+
 if(PanelGetAccountObjectByUid(0).USERNAME === "wait_to_set" && PanelGetAccountObjectByUid(0).PASSWORD === "wait_to_set"){
     console.log("初次运行OpenLive，只开启PanelServer")
     runPanelServer()

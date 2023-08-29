@@ -1,5 +1,7 @@
+console.log("JS Loaded")
+
 var xhr = new XMLHttpRequest();
-xhr.post('POST', '/panel_api/get_serv_info', true);
+xhr.open('POST', '/panel_api/get_serv_info', true);
 xhr.send(JSON.stringify({ token: localStorage.getItem("openlive_panel_token") }));
 xhr.onreadystatechange = function () {
     if (xhr.readyState === 4 && xhr.status === 200) {
@@ -8,12 +10,28 @@ xhr.onreadystatechange = function () {
             document.getElementById("button_start_live").setAttribute("disabled","disabled")
             document.getElementById("button_stop_live").removeAttribute("disabled")
         }
+        if(!data.can_chat){
+            document.getElementById("checkbox_can_chat").removeAttribute("checked")
+        }
         document.getElementById("input_streamkey").value = data.streamkey
         document.getElementById("input_livetitle").value = data.livetitle
         document.getElementById("input_anchor_name").value = data.anchorname
         document.getElementById("input_anchor_profile_img_url").value = data.anchorprofileimgurl
     }
 };
+
+function randomString(e) {
+    e = e || 32;
+    var t = "ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678",
+        a = t.length,
+        n = "";
+    for (i = 0; i < e; i++) n += t.charAt(Math.floor(Math.random() * a));
+    return n
+}
+
+function gen_stream_key() {
+    document.getElementById("input_streamkey").value = randomString(60)
+}
 
 function send_api_req_with_object(api_path, object_){
     var xhr = new XMLHttpRequest();
@@ -27,6 +45,7 @@ function send_api_req_with_object(api_path, object_){
             console.log(data);
             if (data.status) {
                 alert("成功: " + data.msg)
+                location.reload()
             }
             else {
                 alert("失败: " + data.msg)

@@ -14,6 +14,7 @@ function loginclick(){
                 if(data.status){
                     alert("成功: " + data.msg)
                     localStorage.setItem("openlive_panel_token", data.token);
+                    window.location.pathname = "/panel_main.html"
                 }
                 else{
                     alert("失败: " + data.msg)
