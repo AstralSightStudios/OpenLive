@@ -29,6 +29,7 @@ Since OpenLive has not been fully developed, it is hard to say how to build it, 
 | Basic information display of anchor | 🟢 | 🟢 |
 | Live account system | 🔵 | 🟢 |
 | Live chat function (Chat) | 🟢 | 🟢 |
+| WebPanel Online-Admin-Panel | 🟡 | 🟡 |
 | Host home page functions (including live playback, etc.) | 🟡 | 🟣 |
 | Live gift function (including the Gold and Exp mechanism of the account system) | 🟣 | 🟣 |
 | Extremely low latency live streaming (using WebRTC) | 🔴 | 🔴 |
