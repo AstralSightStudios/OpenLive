@@ -80,6 +80,7 @@
               <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
             </p>
           </video>
+          <h1 id="live_player_no_living_tips" style="color: white; position: absolute; top: 45%;left: 50%; text-align: center; transform: translate(-50%,-50%);" hidden>主播还没在直播呢...</h1>
         </div>
         <div id="live_chat_clip"></div>
         <div id="chat_area" class="surface-variant">
