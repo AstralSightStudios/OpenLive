@@ -35,7 +35,7 @@ export function onload_steps() {
             else{
                 console.log("隐藏播放器")
                 //@ts-ignore
-                document.getElementById("live_player_vjs").hidden = true
+                document.getElementById("live_player_flvjs").hidden = true
                 //@ts-ignore
                 document.getElementById("live_player_no_living_tips").removeAttribute("hidden")
             }
