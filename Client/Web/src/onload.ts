@@ -5,11 +5,7 @@ import { StartWSConnect } from './ws_connect'
 
 export function onload_steps() {
     //@ts-ignore
-    window.videojs = videojs
-    //@ts-ignore
     window.flvjs = flvjs
-
-    console.log("初始化vjs与flvjs")
 
     axios.default.get(app_config["server_addr"] + "/api/app_info")
         .then(res => {
