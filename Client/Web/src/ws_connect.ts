@@ -15,7 +15,8 @@ export function connected_notify_send(){
 }
 
 export function StartWSConnect() {
-    (window as any).ws_connect = new WebSocket((window as any).live_info.websocket_addr);
+    //(window as any).ws_connect = new WebSocket((window as any).live_info.websocket_addr);
+    (window as any).ws_connect = new WebSocket("wss://searchstars_live_ws.stargazing.studio/ws_connect");
 
     (window as any).ws_connect.addEventListener('open', function (event: any) {
         if (getCookie("latest_token")) {

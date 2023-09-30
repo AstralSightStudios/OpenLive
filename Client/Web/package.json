@@ -11,8 +11,6 @@
   },
   "dependencies": {
     "flv.js": "^1.6.2",
-    "video.js": "^8.5.2",
-    "videojs-flvjs-es6": "^1.0.1",
     "vue": "^3.3.4"
   },
   "devDependencies": {

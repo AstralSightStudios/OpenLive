@@ -11,11 +11,13 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.2",
+    "express-http-proxy": "^2.0.0",
     "node-media-server": "^2.6.2",
     "ws": "^8.13.0"
   },
   "devDependencies": {
     "body-parser": "^1.20.2",
-    "diff": "^5.1.0"
+    "diff": "^5.1.0",
+    "request": "^2.88.2"
   }
 }

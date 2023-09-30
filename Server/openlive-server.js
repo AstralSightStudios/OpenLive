@@ -1,5 +1,8 @@
 import express from 'express'
 import * as fs from 'fs'
+import { createRequire } from 'module'
+const require = createRequire(import.meta.url);
+const proxy = require('express-http-proxy');
 
 export function runOpenLiveServer() {
     const openlive_server = express()
@@ -10,7 +13,7 @@ export function runOpenLiveServer() {
         // 获取请求的路径
         const path = req.path;
         if (path === '/stream.flv') {
-            res.redirect("http://127.0.0.1:" + global.config.LIVESTREAM_CONFIG.HTTP_FLV_PORT + "/openlive/" + global.panel_save.STREAMKEY + ".flv");
+            proxy("http://127.0.0.1:" + global.config.LIVESTREAM_CONFIG.HTTP_FLV_PORT + "/openlive/" + global.panel_save.STREAMKEY + ".flv")(req, res, next);
         } else {
             // 否则，继续执行下一个中间件函数
             next();

@@ -74,11 +74,8 @@
         style="color: white; font-size: 24px; font-family: Noto Sans SC Med;">Loading...</div>
       <div class="container">
         <div id="live_player" class="surface-variant">
-          <video id="live_player_vjs" class="video-js" controls preload="auto" style="width: 100%; height: 100%;">
-            <p class="vjs-no-js">
-              To view this video please enable JavaScript, and consider upgrading to a web browser that
-              <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-            </p>
+          <video id="live_player_flvjs" controls preload="auto" style="width: 100%; height: 100%;">
+
           </video>
           <h1 id="live_player_no_living_tips" style="color: white; position: absolute; top: 45%;left: 50%; text-align: center; transform: translate(-50%,-50%);" hidden>主播还没在直播呢...</h1>
         </div>

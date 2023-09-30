@@ -1,8 +1,6 @@
 import * as axios from 'axios'
 import { app_config } from './config'
-import videojs from 'video.js';
 import flvjs from 'flv.js';
-import 'videojs-flvjs-es6'
 import { StartWSConnect } from './ws_connect'
 
 export function onload_steps() {
@@ -10,6 +8,8 @@ export function onload_steps() {
     window.videojs = videojs
     //@ts-ignore
     window.flvjs = flvjs
+
+    console.log("初始化vjs与flvjs")
 
     axios.default.get(app_config["server_addr"] + "/api/app_info")
         .then(res => {
@@ -24,24 +24,17 @@ export function onload_steps() {
         .then(res => {
             console.log(res.data.livestream_addr)
             if (res.data.live_status) {
-                var player = videojs('live_player_vjs', {
-                    techOrder: ['html5', 'flvjs'],
-                    flvjs: {
-                        mediaDataSource: {
-                            isLive: false,
-                            cors: true,
-                            withCredentials: false,
-                        },
-                    },
-                    sources: [
-                        {
-                            src: res.data.livestream_addr,
-                            type: 'video/x-flv'
-                        }
-                    ],
-                    controls: true
-                });
-                player.load()
+                if (flvjs.isSupported()) {
+                    var videoElement = document.getElementById('live_player_flvjs');
+                    var flvPlayer = flvjs.createPlayer({
+                        type: 'flv',
+                        url: res.data.livestream_addr
+                    });
+                    //@ts-ignore
+                    flvPlayer.attachMediaElement(videoElement);
+                    flvPlayer.load();
+                    flvPlayer.play();
+                }
             }
             else{
                 console.log("隐藏播放器")
@@ -65,6 +58,8 @@ export function onload_steps() {
             //player.src(res.data.livestream_addr)
 
             (window as any).live_info = res.data
+
+            console.log("建立wss连接");
 
             StartWSConnect()
         })
